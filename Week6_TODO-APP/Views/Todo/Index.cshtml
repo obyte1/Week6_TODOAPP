@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Week6_TODO_APP.Models.TodoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <table width="90%">
+        <tr>
+            <form method="get" asp-action="Index">
+            <td 60%>
+                <a asp-action="Create">Create New</a>
+            </td>
+            <td width="20%">
+                <label class="control-label"></label>
+                <input class="sbar" placeholder="Search Todo List" @*asp-for="TaskName"*@ class="form-control" />               
+                       
+             </td>
+            <td  width="10%">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </td>
+            </form>
+      </tr>
+    </table>    
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id  }) |
+                @*<a action="Edit" asp-all-route-id="{@item.Id}">Edit</a>*@
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
